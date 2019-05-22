@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.kth.ict.iv1350.retailstore.integration;
+package se.kth.ict.iv1350.retailstore.view;
 
 /**
  *
  * @author gurra
  */
-public class IdentifierWasNotFoundException extends Exception {
-    //private ;
+class ItemWasNotAvailableException {
     
-    
-    public IdentifierWasNotFoundException(String message) {
-    super(message);
-}
 }

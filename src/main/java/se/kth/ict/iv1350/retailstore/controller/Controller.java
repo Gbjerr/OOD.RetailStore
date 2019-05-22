@@ -7,17 +7,20 @@ package se.kth.ict.iv1350.retailstore.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import se.kth.ict.iv1350.retailstore.integration.*;
+import se.kth.ict.iv1350.retailstore.integration.ItemRegistry;
+import se.kth.ict.iv1350.retailstore.integration.InventorySystem;
+import se.kth.ict.iv1350.retailstore.integration.AccountingSystem;
+import se.kth.ict.iv1350.retailstore.integration.ItemNotAvailableException;
+import se.kth.ict.iv1350.retailstore.integration.ItemRegistryException;
 import se.kth.ict.iv1350.retailstore.model.TotalRevenueObserver;
 import se.kth.ict.iv1350.retailstore.integration.Printer;
 import se.kth.ict.iv1350.retailstore.integration.RegistryCreator;
-import se.kth.ict.iv1350.retailstore.integration.IdentifierWasNotFoundException;
 import se.kth.ict.iv1350.retailstore.model.ItemDTO;
 import se.kth.ict.iv1350.retailstore.model.Receipt;
 import se.kth.ict.iv1350.retailstore.model.Sale;
 
 /**
- * The class which performs all operations when called from UI
+ * The class which performs all system operations when called from UI (view)
  */
 
 public class Controller {
@@ -55,12 +58,15 @@ public class Controller {
     * @param quantity - input for choice of quantity
     */
     
-    public void enterItemID(String itemIDfier, int quantity) throws UnsuccesfulOperationException {
-        try {
-            this.sale.addItem(itemIDfier, quantity);
-        } catch (UnsuccesfulOperationException e) {
-            throw new UnsuccesfulOperationException (e.getMessage(), e);
+    public void enterItemID(String itemIDFier, int quantity) throws OperationFailedException, ItemNotAvailableException {
+        try{
+            ItemDTO itemSpecification = itemReg.findItemByRegNo(itemIDFier);
+            this.sale.addToList(itemSpecification, quantity);
         }
+        catch(ItemRegistryException e) {
+            throw new OperationFailedException("ItemRegistry was not readable", e);
+        }
+        
     }
     
     /**

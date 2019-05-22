@@ -21,6 +21,6 @@ public class Main {
         Printer printer = new Printer();
         Controller controller = new Controller(creator, printer);
         ErrorMessageHandler handler = new ErrorMessageHandler();
-        new View(controller, handler).sampleExecution();
+        new View(controller).sampleExecution();
     }
 }

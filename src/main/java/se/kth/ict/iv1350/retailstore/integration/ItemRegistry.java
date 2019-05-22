@@ -7,7 +7,7 @@ package se.kth.ict.iv1350.retailstore.integration;
 import java.util.List;
 import java.util.ArrayList;
 
-//import se.kth.ict.iv1350.retailstore.model.Item;
+import se.kth.ict.iv1350.retailstore.integration.ItemNotAvailableException;
 import se.kth.ict.iv1350.retailstore.model.ItemDTO;
 /**
  * @author gurra
@@ -19,21 +19,16 @@ public class ItemRegistry {
         addItems();
     }
     
-    public static ItemDTO findItemByRegNo(String searchedRegNo) throws IdentifierWasNotFoundException, DatabaseFailureException {
-       
-        
-        
+    public ItemDTO findItemByRegNo(String searchedRegNo) throws ItemNotAvailableException, ItemRegistryException{
+        if(searchedRegNo.equals("åäö000")) {
+            throw new ItemRegistryException("\nAttempt to find item with regNo:  ~~ åäö000 ~~ resulted in a database crash");
+        }
         for(ItemDTO item : items) {
             if(item.getRegNo() == searchedRegNo) {
                 return item;
             }
         }
-        
-        if (searchedRegNo.contains("ä")){
-            throw new DatabaseFailureException("connection to database was lost");
-        }
-        
-        throw new IdentifierWasNotFoundException("\n" + "Item ID: " + searchedRegNo + " was not found in registry :( "  );
+        throw new ItemNotAvailableException(searchedRegNo);
     }
     
     private void addItems() {

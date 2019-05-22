@@ -5,7 +5,7 @@
  */
 package se.kth.ict.iv1350.retailstore.loghandler;
 
-import se.kth.ict.iv1350.retailstore.controller.UnsuccesfulOperationException;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;

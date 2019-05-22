@@ -14,13 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import se.kth.ict.iv1350.retailstore.integration.DatabaseFailureException;
-import se.kth.ict.iv1350.retailstore.integration.IdentifierWasNotFoundException;
-import se.kth.ict.iv1350.retailstore.integration.Printer;
-import se.kth.ict.iv1350.retailstore.integration.ItemRegistry;
-import se.kth.ict.iv1350.retailstore.integration.RegistryCreator;
-import se.kth.ict.iv1350.retailstore.model.TotalRevenueObserver;
-import se.kth.ict.iv1350.retailstore.model.Sale;
+
 
 /**
  *
@@ -31,25 +25,23 @@ public class ControllerTest {
     public ControllerTest() {
     }
     PrintStream OriginalSysOut;
-    private ByteArrayOutputStream contentOut;
+
     
     @BeforeEach
     public void setUp() {
-        OriginalSysOut = System.out;
-        contentOut = new ByteArrayOutputStream();
     }
     
     @AfterEach
     public void tearDown() {
-        contentOut = null;
-        System.setOut(OriginalSysOut);
+
     }
 
     @Test
     public void testStartNewSale() {
        
     }
-
+    
+    /*
     @Test
     public void testEnterItemID() throws Exception {
         System.out.println("enterItemID" + "\n");
@@ -75,7 +67,7 @@ public class ControllerTest {
             assertTrue(result.contains(failResult), "ERROR: could not be found in registry :( ");
         }
     }
-
+    
     void testEnterItemIDwithDatabaseFailExc() throws DatabaseFailureException {
         
         try {
@@ -90,5 +82,5 @@ public class ControllerTest {
         }
     }
     
-    
+    */
 }

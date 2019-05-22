@@ -6,9 +6,6 @@ import java.util.Iterator;
 import java.time.LocalDateTime;
 
 
-import se.kth.ict.iv1350.retailstore.integration.IdentifierWasNotFoundException;
-import se.kth.ict.iv1350.retailstore.integration.DatabaseFailureException;
-import se.kth.ict.iv1350.retailstore.controller.UnsuccesfulOperationException;
 import se.kth.ict.iv1350.retailstore.integration.AccountingSystem;
 import se.kth.ict.iv1350.retailstore.integration.InventorySystem;
 import se.kth.ict.iv1350.retailstore.integration.ItemRegistry;
@@ -40,27 +37,6 @@ public class Sale {
     }
     
     /**
-     * Calls for method which handles further search based on recieved parameters 
-     * and decides whether to pass it on or not.
-     * 
-     * @param itemID - String which recognizes type of the product wanted
-     * @param quantity - Quantity of wanted product
-     */
-    
-    public void addItem (String itemID, int quantity) throws UnsuccesfulOperationException {
-        ItemDTO searchedItem;
-        try{
-            searchedItem = searchForItem(itemID);
-        } catch (IdentifierWasNotFoundException | DatabaseFailureException exc) {
-            throw new UnsuccesfulOperationException(exc.getMessage(), exc);
-        }
-        if(searchedItem != null) {
-            addToList(searchedItem, quantity);
-        }
-       
-    }
-    
-    /**
      * places wanted item on the list and decides 
      * whether to add quantity based on quantity input.
      * 
@@ -69,7 +45,7 @@ public class Sale {
      * @throws UnsuccesfulOperationException 
      */
     
-    private void addToList(ItemDTO itemInfo, int quantity) throws UnsuccesfulOperationException {
+    public void addToList(ItemDTO itemInfo, int quantity) {
         boolean condition = false;
         Item itemCreate;
         itemCreate = new Item(itemInfo, quantity);
@@ -84,28 +60,7 @@ public class Sale {
         }   
     }
     
-    /**
-     * Passes on ID to call for a methdo which finds items based on ID, 
-     * then recieves an item and returns it.
-     * 
-     * @param ID - ID for wanted product
-     * @return a type ItemDTO
-     * @throws DatabaseFailureException - throws an exception if theres a input ID which is not allowed.
-     * @throws IdentifierWasNotFoundException - throws an exception if following input ID doesn't exist in registry. 
-     */
-    
-    public ItemDTO searchForItem(String ID) throws DatabaseFailureException, IdentifierWasNotFoundException {
-        try{
-            return ItemRegistry.findItemByRegNo(ID);
-        } 
-        catch(DatabaseFailureException baseExc) {
-            throw new DatabaseFailureException (baseExc.getMessage());
-        }
-        catch(IdentifierWasNotFoundException ideExc) {
-            throw new IdentifierWasNotFoundException(ideExc.getMessage());
-        }
-    }   
-    
+ 
     /**
      * 
      * @return 
@@ -163,9 +118,7 @@ public class Sale {
     public Receipt doPay(int recievedAmt, Sale sale) {
        this.recievedAmt = recievedAmt;
        calculateChange(recievedAmt);
-       //new SalesLog().storeSale(sale);
-       //new InventorySystem().updateInvSys(sale);
-       //new AccountingSystem().updateAccSys(sale);
+       updateExternalSystems(sale);
        notifyObservers(runningTotal);
        return new Receipt(sale);
     }

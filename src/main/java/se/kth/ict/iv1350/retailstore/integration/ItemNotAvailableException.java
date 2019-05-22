@@ -9,9 +9,10 @@ package se.kth.ict.iv1350.retailstore.integration;
  *
  * @author gurra
  */
-public class DatabaseFailureException extends Exception{
+public class ItemNotAvailableException extends Exception {
     
-    public DatabaseFailureException(String msg) {
-        super(msg);
+    public ItemNotAvailableException(String regNo) {
+        super("varan med ID :   ~~~~" + regNo + "~~~~   hittades ej, vänligen försök igen.");
     }
+    
 }

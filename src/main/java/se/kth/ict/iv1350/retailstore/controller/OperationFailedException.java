@@ -9,9 +9,9 @@ package se.kth.ict.iv1350.retailstore.controller;
  *
  * @author gurra
  */
-public class UnsuccesfulOperationException extends Exception {
+public class OperationFailedException extends Exception{
     
-    public UnsuccesfulOperationException(String errorMessage, Exception e) {
-        super(errorMessage);
+    public OperationFailedException(String msg, Exception e) {
+        super(msg, e);
     }
 }

@@ -8,10 +8,10 @@ package se.kth.ict.iv1350.retailstore.view;
 
 import java.lang.System.Logger;
 import se.kth.ict.iv1350.retailstore.controller.Controller;
+import se.kth.ict.iv1350.retailstore.integration.ItemNotAvailableException;
+import se.kth.ict.iv1350.retailstore.controller.OperationFailedException;
 import se.kth.ict.iv1350.retailstore.loghandler.LogHandler;
-import se.kth.ict.iv1350.retailstore.controller.UnsuccesfulOperationException;
 import se.kth.ict.iv1350.retailstore.model.TotalRevenueObserver;
-import se.kth.ict.iv1350.retailstore.integration.IdentifierWasNotFoundException;
 import se.kth.ict.iv1350.retailstore.integration.ItemRegistry;
 import se.kth.ict.iv1350.retailstore.model.ItemDTO;
 import se.kth.ict.iv1350.retailstore.model.Sale;
@@ -30,7 +30,7 @@ public class View {
     * @param contr Controller which performs all neccessary operations
     */
     
-    public View(Controller contr, ErrorMessageHandler error) {
+    public View(Controller contr) {
         this.contr = contr;
         this.error = error;
         this.logger = LogHandler.getLogger();
@@ -47,14 +47,16 @@ public class View {
     
         
         try{
-        contr.enterItemID("jlp254", 2);
-        contr.enterItemID("cba321", 2);
-        } catch(UnsuccesfulOperationException e) {
-            error.errorMsg(e.getMessage());
+        contr.enterItemID("94832", 2);
+        contr.enterItemID("49309", 2);
+        } 
+        catch(ItemNotAvailableException | OperationFailedException e) {
             logger.logException(e);
+            error.errorMsg(e.getMessage());
+             
         }
         
-        int recievedAmt = contr.demandTotalPrice();
+        contr.demandTotalPrice();
         
         contr.pay(500);
     

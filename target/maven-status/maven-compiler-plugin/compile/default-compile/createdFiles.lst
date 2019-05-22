@@ -9,13 +9,14 @@ se\kth\ict\iv1350\retailstore\integration\Printer.class
 se\kth\ict\iv1350\retailstore\model\ItemDTO.class
 se\kth\ict\iv1350\retailstore\view\TotalRevenueView.class
 se\kth\ict\iv1350\retailstore\controller\Controller.class
-se\kth\ict\iv1350\retailstore\controller\UnsuccesfulOperationException.class
-se\kth\ict\iv1350\retailstore\integration\IdentifierWasNotFoundException.class
 se\kth\ict\iv1350\retailstore\integration\ItemRegistry.class
+se\kth\ict\iv1350\retailstore\integration\ItemNotAvailableException.class
+se\kth\ict\iv1350\retailstore\controller\OperationFailedException.class
 se\kth\ict\iv1350\retailstore\integration\InventorySystem.class
-se\kth\ict\iv1350\retailstore\integration\DatabaseFailureException.class
+se\kth\ict\iv1350\retailstore\integration\ItemRegistryException.class
 se\kth\ict\iv1350\retailstore\integration\SalesLog.class
 se\kth\ict\iv1350\retailstore\view\ErrorMessageHandler.class
+se\kth\ict\iv1350\retailstore\view\ItemWasNotAvailableException.class
 se\kth\ict\iv1350\retailstore\model\Receipt.class
 se\kth\ict\iv1350\retailstore\model\Sale.class
 se\kth\ict\iv1350\retailstore\startup\Main.class

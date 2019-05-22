@@ -1,0 +1,5 @@
+15 maj 2019 22:54:29, Exception was thrown: Operation fail in ItemRegistry
+se.kth.ict.iv1350.retailstore.controller.UnsuccesfulOperationException: Operation fail in ItemRegistry
+	at se.kth.ict.iv1350.retailstore.controller.Controller.enterItemID(Controller.java:62)
+	at se.kth.ict.iv1350.retailstore.view.View.sampleExecution(View.java:50)
+	at se.kth.ict.iv1350.retailstore.startup.Main.main(Main.java:24)

@@ -63,6 +63,12 @@ public class Controller {
         }
     }
     
+    /**
+     * gets total amount of sale
+     *
+     * @return total amount of sale
+     */
+    
     public int demandTotalPrice() {
        return this.sale.calculateTotalCost();
     }

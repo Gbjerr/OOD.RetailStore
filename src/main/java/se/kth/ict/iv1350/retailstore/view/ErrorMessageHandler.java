@@ -10,11 +10,16 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 /**
- *
- * @author gurra
+ * Class responsible for notifying customers about eventual errors, by printing
+ * a message containing the error.
+ * 
  */
 public class ErrorMessageHandler {
     
+    /**
+     * Assembles a string containing timestamp, error and prints.
+     * @param msg the message to be visible for customers.
+     */
     
     void errorMsg(String msg) {
         StringBuilder msgBuilder = new StringBuilder();

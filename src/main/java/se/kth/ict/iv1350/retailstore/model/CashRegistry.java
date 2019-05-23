@@ -1,26 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.kth.ict.iv1350.retailstore.model;
 
 /**
- *
- * @author gurra
+ * Class responsible for maintaining balance in registry of income.
  */
 public class CashRegistry {
     private int balance;
     
+    /**
+     * constructor setting current balance,
+     */
     public CashRegistry () {
         this.balance = 400;
     }
     
+    /**
+     * Adds amount of a payment and updates current balance.
+     * @param payment amount payed.
+     */
     public void addPayment (int payment) {
         balance = balance + payment;
         System.out.println("balance is now :" + balance);
     }
     
+    /**
+     * Getter for current balance.
+     * @return balance.
+     */
     public int getBalance () {
         return balance;
     }

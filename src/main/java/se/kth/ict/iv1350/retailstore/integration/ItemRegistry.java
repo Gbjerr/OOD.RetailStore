@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.kth.ict.iv1350.retailstore.integration;
 import java.util.List;
 import java.util.ArrayList;
@@ -10,7 +5,8 @@ import java.util.ArrayList;
 import se.kth.ict.iv1350.retailstore.integration.ItemNotAvailableException;
 import se.kth.ict.iv1350.retailstore.model.ItemDTO;
 /**
- * @author gurra
+ * Class responsible to represent the registry in which all possible products
+ * exist.
  */
 public class ItemRegistry {
     private static final List<ItemDTO> items = new ArrayList<>();
@@ -19,9 +15,20 @@ public class ItemRegistry {
         addItems();
     }
     
+    /**
+     * Finds product in registry based on the ID of a product, and returns it. 
+     * Cases of when product is not found, or unallowed   
+     * 
+     * @param searchedRegNo ID of searched product.
+     * @return return searched item.
+     * @throws ItemNotAvailableException is thrown when item is not available.
+     * @throws ItemRegistryException is thrown when unallowed chars exist in ID.
+     */
+    
     public ItemDTO findItemByRegNo(String searchedRegNo) throws ItemNotAvailableException, ItemRegistryException{
-        if(searchedRegNo.equals("åäö000")) {
-            throw new ItemRegistryException("\nAttempt to find item with regNo:  ~~ åäö000 ~~ resulted in a database crash");
+        if(verifyID(searchedRegNo)) {
+            throw new ItemRegistryException("\nAttempt to find item with regNo, containing chars:  ~~ åäö ~~ "
+                                                + "resulted in a database crash");
         }
         for(ItemDTO item : items) {
             if(item.getRegNo() == searchedRegNo) {
@@ -37,6 +44,21 @@ public class ItemRegistry {
         items.add(new ItemDTO("tomat EKO", "bca231", "gott till sallad", 10));
         
     }
+      
+    /**
+     * Verifies whether ID contains unallowed chars and returns a boolean.
+     * @param searchedRegNo the ID to be investigated.
+     * @return boolean based on result.
+     */
+    
+    private boolean verifyID (String searchedRegNo) {
+        if(searchedRegNo.contains("å") || 
+                searchedRegNo.contains("ä") || searchedRegNo.contains("ö")) {
+            return true;
+        }
+        return false;
+    }
+        
     
     
     

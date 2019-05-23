@@ -1,18 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.kth.ict.iv1350.retailstore.integration;
 
 /**
- *
- * @author gurra
+ * Thrown when searched item cannot be found in ItemRegistry.
  */
 public class ItemNotAvailableException extends Exception {
     
+    /**
+     * Specifies the ID of an item which cannot be found.
+     * @param regNo the ID of searched product which couldnt be found.
+     */
     public ItemNotAvailableException(String regNo) {
-        super("varan med ID :   ~~~~" + regNo + "~~~~   hittades ej, vänligen försök igen.");
+        super("varan med ID :    " + regNo + "     hittades ej, vänligen försök igen.");
     }
     
 }

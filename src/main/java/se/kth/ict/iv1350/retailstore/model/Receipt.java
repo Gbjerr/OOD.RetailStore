@@ -1,21 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.kth.ict.iv1350.retailstore.model;
 
 /**
- *
- * @author gurra
+ * Class responsible for recieving object of sale and assemble receipt based on
+ * performed sale.
  */
 public class Receipt {
     private Sale sale;
     
+    /**
+     * contructor of receipt initiating sale containing necessary info.
+     * @param sale 
+     */
     public Receipt(Sale sale) {
         this.sale = sale;
     }
 
+    /**
+     * Assembles string for Receipt to be printed out.
+     * @return string of total receipt.
+     */
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("----COMPLETED SALE----\n");

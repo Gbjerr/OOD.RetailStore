@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.kth.ict.iv1350.retailstore.loghandler;
 
 
@@ -14,8 +9,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 /**
- *
- * @author gurra
+ * Class is purposed to log exceptions, for notifying developers. 
+ * 
  */
 public class LogHandler {
     private static final String LOG_FILE_NAME = "sale-log.txt";
@@ -41,6 +36,12 @@ public class LogHandler {
         logFile = new PrintWriter(new FileWriter(LOG_FILE_NAME), true);
     }
     
+    /**
+     * Applies the exception onto the readable log.
+     * 
+     * @param exception is the occurred exception to be written in log.
+     */
+    
     public void logException(Exception exception){
         StringBuilder msgBuilder = new StringBuilder();
         msgBuilder.append(createTime() + ", ");
@@ -50,7 +51,11 @@ public class LogHandler {
         exception.printStackTrace(logFile);
     }
     
-    
+    /**
+     * Creates timestamp for what time, exceptions occur.
+     * 
+     * @return returns actual time.
+     */
     
     public String createTime() {
         LocalDateTime now = LocalDateTime.now();

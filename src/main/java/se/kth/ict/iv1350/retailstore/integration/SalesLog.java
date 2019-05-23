@@ -1,19 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.kth.ict.iv1350.retailstore.integration;
 
 import se.kth.ict.iv1350.retailstore.model.Sale;
 
 /**
- *
- * @author gurra
+ * Class responsible for representing a simplified external system for storing
+ * sales.
  */
 public class SalesLog {
     
-    public void storeSale(Sale saleToBeCompleted) {
+    /**
+     * Gives response when recieving information about performed sale.
+     * @param completedSale the performed sale containing relevant details.
+     */
+    
+    public void storeSale(Sale completedSale) {
         System.out.println("\nsale has been stored");
     }
 }

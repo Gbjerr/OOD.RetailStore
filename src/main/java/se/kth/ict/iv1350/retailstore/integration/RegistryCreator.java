@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.kth.ict.iv1350.retailstore.integration;
 
 import se.kth.ict.iv1350.retailstore.model.CashRegistry;
 /**
- *
- * @author gurra
+ * Responsible for initiating important classes in Integration.
  */
 public class RegistryCreator {
     private AccountingSystem accSys = new AccountingSystem();
@@ -17,9 +11,7 @@ public class RegistryCreator {
     private CashRegistry cashRegistry = new CashRegistry();
     private ItemRegistry itemRegistry = new ItemRegistry();
 
-    public RegistryCreator () {
-        
-    }
+    public RegistryCreator () {}
     
     public AccountingSystem getAccountingSystem () {
         return accSys;

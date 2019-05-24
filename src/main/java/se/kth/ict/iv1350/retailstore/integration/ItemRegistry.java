@@ -9,15 +9,17 @@ import se.kth.ict.iv1350.retailstore.model.ItemDTO;
  * exist.
  */
 public class ItemRegistry {
-    private static final List<ItemDTO> items = new ArrayList<>();
+    private List<ItemDTO> items = new ArrayList<>();
     
+    public ItemRegistry(List<ItemDTO> items) {
+        this.items = items;
+    }
     ItemRegistry() {
         addItems();
     }
     
     /**
-     * Finds product in registry based on the ID of a product, and returns it. 
-     * Cases of when product is not found, or unallowed   
+     * Finds product in registry based on the ID of a product, and returns it.    
      * 
      * @param searchedRegNo ID of searched product.
      * @return return searched item.
@@ -51,7 +53,7 @@ public class ItemRegistry {
      * @return boolean based on result.
      */
     
-    private boolean verifyID (String searchedRegNo) {
+    public boolean verifyID (String searchedRegNo) {
         if(searchedRegNo.contains("å") || 
                 searchedRegNo.contains("ä") || searchedRegNo.contains("ö")) {
             return true;

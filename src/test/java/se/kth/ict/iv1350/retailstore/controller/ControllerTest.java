@@ -5,9 +5,6 @@
  */
 package se.kth.ict.iv1350.retailstore.controller;
 
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +12,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import se.kth.ict.iv1350.retailstore.integration.ItemRegistry;
+import se.kth.ict.iv1350.retailstore.integration.ItemNotAvailableException;
+import se.kth.ict.iv1350.retailstore.integration.ItemRegistryException;
+import se.kth.ict.iv1350.retailstore.model.Sale;
+import se.kth.ict.iv1350.retailstore.model.ItemDTO;
 
 /**
  *
@@ -22,65 +27,56 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ControllerTest {
     
+    private ByteArrayOutputStream outPut;
+    private PrintStream sysOut;
+    
     public ControllerTest() {
+        
     }
-    PrintStream OriginalSysOut;
-
+    
+    @BeforeAll
+    public static void setUpClass() {
+    }
+    
+    @AfterAll
+    public static void tearDownClass() {
+    }
     
     @BeforeEach
     public void setUp() {
+        sysOut = System.out;
+        outPut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outPut));
     }
     
     @AfterEach
     public void tearDown() {
-
+        outPut = null;
+        System.setOut(sysOut);
     }
-
-    @Test
-    public void testStartNewSale() {
+    
+    public void testEnterItemID() {
+       Sale instance = new Sale();
+       ItemDTO item = new ItemDTO("gurka", "gur734", "passar till sallad", 19);
+       instance.addToList(item);
+       Sale result = instance;
        
+       assertTrue(result instanceof Sale);
     }
-    
-    /*
-    @Test
-    public void testEnterItemID() throws Exception {
-        System.out.println("enterItemID" + "\n");
-        String itemIDfier = "abc123";
-        int quantity = 3;
-        Printer printer;
-        RegistryCreator creator;
-        Controller instance = new Controller(creator, printer);
-        instance.enterItemID(itemIDfier, quantity);
-        
-        assertTrue(result instanceof Controller, "fail");
-    }
-    
-    void testEnterItemIDWithIdentifierNotFoundExc() throws IdentifierWasNotFoundException {
+
+    public void testEnterItemIDWithItemNotAvailableExc () throws ItemNotAvailableException {
+        ItemRegistry itemReg = new ItemRegistry();
         try {
-            ItemRegistry registry = new ItemRegistry();
+            itemReg.findItemByRegNo("ldk938");
             
-            registry.findItemByRegNo("143mfj");
         }
-        catch (IdentifierWasNotFoundException exc) {
-            String result = exc.getMessage() + " ";
-            String failResult = "failed ID: " + "132mfj";
-            assertTrue(result.contains(failResult), "ERROR: could not be found in registry :( ");
+        catch(ItemNotAvailableException e){
+            String expResult = "varan med ID :    " + "oiu943" + "     hittades ej. Vänligen försök igen.";
+            String result = e.getMessage();
+            assertTrue(result.equals(expResult), " varan hittades ej");
         }
-    }
-    
-    void testEnterItemIDwithDatabaseFailExc() throws DatabaseFailureException {
-        
-        try {
-        ItemRegistry registry = new ItemRegistry();
-        
-        registry.findItemByRegNo("äääää");
-        }
-        catch(DatabaseFailureException exc) {
-            String result = exc.getMessage();
-            String failResult = "Database crashed fail" + "äääää";
-            assertTrue(result.contains(failResult),"database crashed as result from search");
+        catch(ItemRegistryException e) {
+            fail("this is not expected...");
         }
     }
-    
-    */
 }

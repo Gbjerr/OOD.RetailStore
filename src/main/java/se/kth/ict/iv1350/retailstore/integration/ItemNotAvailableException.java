@@ -10,7 +10,7 @@ public class ItemNotAvailableException extends Exception {
      * @param regNo the ID of searched product which couldnt be found.
      */
     public ItemNotAvailableException(String regNo) {
-        super("varan med ID :    " + regNo + "     hittades ej, vänligen försök igen.");
+        super("varan med ID :    " + regNo + "     hittades ej. Vänligen försök igen.");
     }
     
 }

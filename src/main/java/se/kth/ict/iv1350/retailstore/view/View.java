@@ -47,7 +47,7 @@ public class View {
     
         
         try{
-        contr.enterItemID("94832", 2);
+        contr.enterItemID("ä23542", 2);
         contr.enterItemID("49309", 2);
         } 
         catch(ItemNotAvailableException | OperationFailedException e) {

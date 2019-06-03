@@ -47,8 +47,8 @@ public class View {
     
         
         try{
-        contr.enterItemID("ä23542", 2);
-        contr.enterItemID("49309", 2);
+        contr.enterItemID("ö3ö12", 2);
+        contr.enterItemID("cba321", 2);
         } 
         catch(ItemNotAvailableException | OperationFailedException e) {
             logger.logException(e);
@@ -56,7 +56,7 @@ public class View {
              
         }
         
-        contr.demandTotalPrice();
+        contr.signalDoneScanning();
         
         contr.pay(500);
     

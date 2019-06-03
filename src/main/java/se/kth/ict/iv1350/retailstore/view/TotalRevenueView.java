@@ -24,7 +24,7 @@ public class TotalRevenueView implements TotalRevenueObserver {
     
     private void display() {
         
-        System.out.println("\n" + "REVENUE UPDATED: Total amount paid " + revenue);
+        System.out.println("\n" + "REVENUE UPDATED: Total amount of sales " + revenue);
     }
     
     private int getRevenue() {

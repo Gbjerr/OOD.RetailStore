@@ -75,7 +75,7 @@ public class Controller {
      * @return total amount of sale
      */
     
-    public int demandTotalPrice() {
+    public int signalDoneScanning() {
        return this.sale.calculateTotalCost();
     }
     

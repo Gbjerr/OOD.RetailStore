@@ -21,7 +21,8 @@ public class Receipt {
      */
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("----COMPLETED SALE----\n");
+        builder.append("\n");
+        //builder.append("----COMPLETED SALE----\n");
         builder.append(sale.toString() + "\n");
         builder.append("----END OF RECEIPT----");
         

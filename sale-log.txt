@@ -1,10 +1,10 @@
-23 maj 2019 17:10:11, Exception was thrown: ItemRegistry was not readable
+3 juni 2019 16:30:11, Exception was thrown: ItemRegistry was not readable
 se.kth.ict.iv1350.retailstore.controller.OperationFailedException: ItemRegistry was not readable
 	at se.kth.ict.iv1350.retailstore.controller.Controller.enterItemID(Controller.java:67)
 	at se.kth.ict.iv1350.retailstore.view.View.sampleExecution(View.java:50)
 	at se.kth.ict.iv1350.retailstore.startup.Main.main(Main.java:24)
 Caused by: se.kth.ict.iv1350.retailstore.integration.ItemRegistryException: 
 Attempt to find item with regNo, containing chars:  ~~ едц ~~ resulted in a database crash
-	at se.kth.ict.iv1350.retailstore.integration.ItemRegistry.findItemByRegNo(ItemRegistry.java:29)
+	at se.kth.ict.iv1350.retailstore.integration.ItemRegistry.findItemByRegNo(ItemRegistry.java:32)
 	at se.kth.ict.iv1350.retailstore.controller.Controller.enterItemID(Controller.java:63)
 	... 2 more

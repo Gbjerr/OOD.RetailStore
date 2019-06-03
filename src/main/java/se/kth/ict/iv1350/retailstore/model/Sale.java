@@ -103,7 +103,9 @@ public class Sale {
             salesRepresentation.append(product.toString(product.getQuantity()) + "\n");
         } 
         salesRepresentation.append("Total Amount: " + runningTotal + "\n");
+        salesRepresentation.append("Amount recieved: " + recievedAmt + "\n");
         salesRepresentation.append("Amount to return: " + changeAmount);
+        
         
         return salesRepresentation.toString();
     }
@@ -118,7 +120,6 @@ public class Sale {
     public Receipt doPay(int recievedAmt, Sale sale) {
        this.recievedAmt = recievedAmt;
        calculateChange(recievedAmt);
-       updateExternalSystems(sale);
        notifyObservers(runningTotal);
        return new Receipt(sale);
     }
